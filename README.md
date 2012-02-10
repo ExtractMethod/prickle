@@ -24,17 +24,17 @@ end
 ### Find elements by any html tag(s)
 
 ```ruby
- element(:href => "http://google.com")
- element(:name => "blue")
- element(:id => "key")
- element(:class => "key", :id => "button")
+element(:href => "http://google.com")
+element(:name => "blue")
+element(:id => "key")
+element(:class => "key", :id => "button")
 ```
 
 ### Find elements by type and html tag(s)
 
 ```ruby
- element(:link,:href => "http://google.com")
- element(:input, :name => "blue")
+element(:link,:href => "http://google.com")
+element(:input, :name => "blue")
 ```
 
 ### Apply a search, a click or a text matcher
