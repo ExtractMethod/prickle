@@ -14,8 +14,8 @@ and to configure
 require 'prickle/capybara'
 
 World do
-    include Capybara::DSL
-    include Prickle::Capybara   #include it after Capybara
+   include Capybara::DSL
+   include Prickle::Capybara   #include it after Capybara
 end
 ```
 
@@ -24,17 +24,17 @@ end
 ### Find elements by any html tag(s)
 
 ```ruby
-  element(:href => "http://google.com")
-  element(:name => "blue")
-  element(:id => "key")
-  element(:class => "key", :id => "button")
+ element(:href => "http://google.com")
+ element(:name => "blue")
+ element(:id => "key")
+ element(:class => "key", :id => "button")
 ```
 
 ### Find elements by type and html tag(s)
 
 ```ruby
-  element(:link,:href => "http://google.com")
-  element(:input, :name => "blue")
+ element(:link,:href => "http://google.com")
+ element(:input, :name => "blue")
 ```
 
 ### Apply a search, a click or a text matcher
@@ -51,19 +51,19 @@ element(:name => "flower").contains_text? "Roses"
 ### Find
 
 ```ruby
-  find_by_name "green"
-  find_button_by_name "green" #find_<element_tag>_by_name "<name>"
+find_by_name "green"
+find_button_by_name "green" #find_<element_tag>_by_name "<name>"
 ```
 
-## Click
+### Click
 
 ```ruby
-  click_by_name "blue"
-  click_input_by_name "blue" #click_<element_tag>_by_name "<name>"
+click_by_name "blue"
+click_input_by_name "blue" #click_<element_tag>_by_name "<name>"
 ```
 
 ### Match text
 
 ```ruby
-  div_contains_text? "text" #<element_tag>_contains_text? "text"
+div_contains_text? "text" #<element_tag>_contains_text? "text"
 ```
