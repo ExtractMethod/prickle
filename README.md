@@ -35,11 +35,11 @@ end
 ```ruby
   element(:link,:href => "http://google.com")
   element(:input, :name => "blue")
-``
+```
 
 ### Apply a search, a click or a text matcher
 
-``ruby
+```ruby
 
 element(:name => "flower")*.exists?*
 element(:name => "flower")*.click*
@@ -52,7 +52,6 @@ element(:name => "flower")*.contains_text? "Roses"*
 
 ```ruby
   find_by_name "green"
-
   find_button_by_name "green" #find_<element_tag>_by_name "<name>"
 ```
 
@@ -61,7 +60,7 @@ element(:name => "flower")*.contains_text? "Roses"*
 ```ruby
   click_by_name "blue"
   click_input_by_name "blue" #click_<element_tag>_by_name "<name>"
-``
+```
 
 ### Match text
 
