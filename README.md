@@ -8,16 +8,27 @@ To install prickle execute
 gem install prickle
 ```
 
-and to configure
+and to configure update your *features/support/env.rb* to include the following:
 
 ```ruby
-require 'prickle/capybara'
+require 'prickle/capybara'    # require
+
 
 World do
    include Capybara::DSL
-   include Prickle::Capybara   #include it after Capybara
+   include Prickle::Capybara  # include  Prickle
 end
 ```
+
+## Waiting for elements to become visible
+
+To enable this feature you need to set the *Prickle::Capybara.wait_time* property.
+
+```ruby
+Prickle::Capybara.wait_time = 5
+```
+
+If you only want to extend the wait time for a particular feature, then you need to reset the wait time using *Prickle::Capybara = nil*.
 
 ## Usage
 
@@ -33,7 +44,7 @@ element(:class => "key", :id => "button")
 ### Find elements by type and html tag(s)
 
 ```ruby
-element(:link,:href => "http://google.com")
+element(:link, :href => "http://google.com")
 element(:input, :name => "blue")
 ```
 
