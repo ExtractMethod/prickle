@@ -8,6 +8,8 @@ module Prickle
         end
       end
 
+      private
+
       def method_missing method, *args
         if method =~ /(^.*)_contains_text\?$/
           find_element_by_name_and_text($1,  { :name => args.first } , args[1])
@@ -16,7 +18,6 @@ module Prickle
         end
       end
 
-      private
 
       def find_by_name_and_text_xpath element, identifier, text
         "//#{type_of(element)}[#{xpath_for(identifier)} and contains(text(), '#{text}')]"

@@ -44,7 +44,7 @@ element(:class => "key", :id => "button")
 ### Find elements by type and html tag(s)
 
 ```ruby
-element(:link, :href => "http://google.com")
+element(:link, :href => "http://google.com")    # you can also use link and paragrap (instead of a and p)
 element(:input, :name => "blue")
 ```
 
