@@ -41,9 +41,9 @@ end
 
 ```ruby
 
-element(:name => "flower")*.exists?*
-element(:name => "flower")*.click*
-element(:name => "flower")*.contains_text? "Roses"*
+element(:name => "flower").exists?
+element(:name => "flower").click
+element(:name => "flower").contains_text? "Roses"
 ```
 
 ## Alternative syntax
