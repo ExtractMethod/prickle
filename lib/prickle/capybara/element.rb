@@ -51,13 +51,13 @@ module Prickle
         begin
           block.call
         rescue Exception => e
-          raise ElementNotFound, element_not_found_message if e.class == ::Capybara::ElementNotFound
+          raise element_not_found(e) if e.class == ::Capybara::ElementNotFound
           raise
         end
       end
 
-      def element_not_found_message
-        Error.new(@type, @identifier, @text, e).message
+      def element_not_found caught_exception
+        Exceptions::ElementNotFound.new(@type, @identifier, @text, caught_exception)
       end
 
       public
