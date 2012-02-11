@@ -1,5 +1,7 @@
 ![](http://github.com/despo/prickle/raw/master/prickle.png)
 
+[![Build Status](https://secure.travis-ci.org/ExtractMethod/prickle.png)](http://travis-ci.org/ExtractMethod/prickle)
+
 ## Configuration
 
 To install prickle execute
