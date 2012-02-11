@@ -5,8 +5,6 @@ describe Prickle::Capybara do
 
   before do
     Capybara.default_driver = :selenium
-    prickly.extend Prickle::Capybara
-    prickly.visit '/'
   end
 
   context 'Extended waits' do
