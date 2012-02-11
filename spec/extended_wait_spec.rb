@@ -4,6 +4,7 @@ describe Prickle::Capybara do
   let(:prickly) { Prickly.new }
 
   before do
+    Capybara.default_driver = :selenium
     prickly.extend Prickle::Capybara
     prickly.visit '/'
   end
