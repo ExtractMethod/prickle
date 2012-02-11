@@ -89,12 +89,13 @@ div_contains_text? "text" #<element_tag>_contains_text? "text"
 confirm_popup  # can be used for both confirmation boxed and alert boxes
 dismiss_popup
 popup_message
+
+popup_message_contains? "<text>"
 ```
 
 ## Capturing screenshots
 
 ```ruby
 capture_screen
-
 capture_screen "<file>"
 ```
