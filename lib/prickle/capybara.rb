@@ -12,11 +12,11 @@ module Prickle
 
     end
 
-    def element type='*', identifier
+    def element type=Element::OF_ANY_TYPE, identifier
       Element.new type, identifier
     end
 
-    def find_by_name type='*', name
+    def find_by_name type=Element::OF_ANY_TYPE, name
       element(type, :name => name).exists?
     end
 

@@ -5,6 +5,8 @@ module Prickle
   module Capybara
     class Element
 
+      OF_ANY_TYPE = "*"
+
       require 'capybara/dsl'
       include ::Capybara::DSL
 
