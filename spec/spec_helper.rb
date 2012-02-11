@@ -5,6 +5,7 @@ require 'prickle/capybara'
 
 class Prickly
   include Capybara::DSL
+  include Prickle::Capybara
 
 end
 

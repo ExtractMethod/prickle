@@ -21,6 +21,18 @@ module Prickle
       find_by_name(name).click
     end
 
+    def confirm_popup
+      page.driver.browser.switch_to.alert.accept
+    end
+
+    def dismiss_popup
+      page.driver.browser.switch_to.alert.dismiss
+    end
+
+    def popup_message
+      page.driver.browser.switch_to.alert.text
+    end
+
     private
 
     def method_missing method, *args
