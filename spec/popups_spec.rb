@@ -28,6 +28,7 @@ describe Prickle::Capybara do
       prickly.click_by_name 'confirm_box'
       prickly.dismiss_popup
       prickly.popup_message.should eq "Aborting."
+      prickly.confirm_popup
     end
   end
 end
