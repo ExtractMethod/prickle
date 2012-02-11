@@ -32,9 +32,7 @@ module Prickle
       end
 
       def identifier
-        return @identifier.each_pair.to_a.map do |key, value|
-          "@#{key}='#{value}'"
-        end.join ' and '
+        return @identifier.each_pair.to_a.map { |k, v| "@#{k}='#{v}'" }.join " and "
       end
 
       def find_element_by xpath
@@ -46,9 +44,7 @@ module Prickle
       end
 
       def find_element
-        handle_exception do
-          find_element_by xpath
-        end
+        handle_exception { find_element_by xpath }
       end
 
       def type
