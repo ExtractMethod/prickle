@@ -1,6 +1,4 @@
-require_relative 'find'
-require_relative 'click'
-require_relative 'match'
+require_relative 'actions'
 require_relative 'exceptions'
 
 module Prickle
@@ -16,6 +14,12 @@ module Prickle
         @identifier = identifier
         @type = type
         self
+      end
+
+      def xpath
+        xpath = "//#{type}[#{identifier}"
+        xpath << " and contains(text(), '#{@text}')" if @text
+        xpath << "]"
       end
 
       def handle_exception &block
@@ -41,15 +45,19 @@ module Prickle
         find(:xpath, xpath)
       end
 
+      def find_element
+        handle_exception do
+          find_element_by xpath
+        end
+      end
+
       def type
         Prickle::TAGS[@type.to_sym] || @type
       end
 
       public
 
-      include Prickle::Actions::Find
-      include Prickle::Actions::Match
-      include Prickle::Actions::Click
+      include Prickle::Capybara::Actions
 
     end
 
