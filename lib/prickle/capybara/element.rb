@@ -21,11 +21,25 @@ module Prickle
         self
       end
 
-      def find_element
-        handle_exception { find_element_by xpath }
+      def identifier
+        return @identifier.each_pair.to_a.map { |k, v| "@#{k}='#{v}'" }.join " and "
       end
 
-      def find_element_by xpath
+      def type
+        CONVERTED_TYPES[@type.to_sym] || @type
+      end
+
+      def find_element
+        handle_exception { find_element_by_xpath }
+      end
+
+      def xpath
+        xpath = "//#{type}[#{identifier}"
+        xpath << " and contains(text(), '#{@text}')" if @text
+        xpath << "]"
+      end
+
+      def find_element_by_xpath
         wait_until(Prickle::Capybara.wait_time) do
           find(:xpath, xpath).visible?
         end unless Prickle::Capybara.wait_time.nil?
@@ -41,20 +55,6 @@ module Prickle
           raise ElementNotFound, error_message if e.class.to_s == "Capybara::ElementNotFound"
           raise
         end
-      end
-
-      def identifier
-        return @identifier.each_pair.to_a.map { |k, v| "@#{k}='#{v}'" }.join " and "
-      end
-
-      def type
-        CONVERTED_TYPES[@type.to_sym] || @type
-      end
-
-      def xpath
-        xpath = "//#{type}[#{identifier}"
-        xpath << " and contains(text(), '#{@text}')" if @text
-        xpath << "]"
       end
 
       public
