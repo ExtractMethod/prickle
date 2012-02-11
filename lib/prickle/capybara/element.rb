@@ -1,3 +1,4 @@
+require 'capybara/dsl'
 require_relative 'actions'
 require_relative 'exceptions'
 
@@ -5,7 +6,6 @@ module Prickle
   module Capybara
     class Element
 
-      require 'capybara/dsl'
       include ::Capybara::DSL
 
       OF_ANY_TYPE = "*"
