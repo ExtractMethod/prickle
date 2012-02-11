@@ -1,6 +1,8 @@
-![](http://github.com/despo/prickle/raw/master/prickle.png)
+# Prickle
 
 [![Build Status](https://secure.travis-ci.org/ExtractMethod/prickle.png)](http://travis-ci.org/ExtractMethod/prickle)
+
+![](http://github.com/despo/prickle/raw/master/prickle.png)
 
 ## Configuration
 
@@ -85,8 +87,6 @@ div_contains_text? "text" #<element_tag>_contains_text? "text"
 
 ```ruby
 confirm_popup  # can be used for both confirmation boxed and alert boxes
-
 dismiss_popup
-
 popup_message
 ```
