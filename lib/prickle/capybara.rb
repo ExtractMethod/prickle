@@ -8,7 +8,7 @@ module Prickle
 
     end
 
-    def capture_screen name=Time.now.strftime("%Y%m%d-%H.%M.%s")
+    def capture_screen name=screenshot_name
       page.driver.browser.save_screenshot Capybara.image_dir + name + ".jpg"
     end
 
@@ -42,6 +42,8 @@ module Prickle
 
     private
 
+    TIME_FORMATTER = "%Y%m%d-%H.%M.%s"
+
     def method_missing method, *args
       if method =~ /(^.*)_contains_text\?$/
         element($1, :name => args.first).contains_text? args[1]
@@ -52,6 +54,10 @@ module Prickle
       else
         super
       end
+    end
+
+    def screenshot_name
+      Time.now.strftime(TIME_FORMATTER)
     end
 
   end
