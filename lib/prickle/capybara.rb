@@ -37,7 +37,7 @@ module Prickle
     end
 
     def popup_message_contains? message
-      raise Capybara::MessageNotContainedInPopup, Error.new.not_contained_in_popup(message) unless popup_message.eql? message
+      raise Exceptions::MessageNotContainedInPopup.new(message) unless popup_message.eql? message
     end
 
     private

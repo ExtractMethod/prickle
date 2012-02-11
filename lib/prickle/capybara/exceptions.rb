@@ -3,8 +3,6 @@ module Prickle
 
     class ElementNotFound < Exception
 
-      attr_reader :message
-
       def initialize(type, identifier, text, caught_exception)
         @message = Message::ElementNotFound.new(type, identifier, text, caught_exception).to_s
       end
@@ -14,20 +12,24 @@ module Prickle
       end
     end
 
-    class MessageNotContainedInPopup < Exception; end;
+    class MessageNotContainedInPopup < Exception
+
+      def initialize message
+        @message = Message::TextNotContainedInPopup.new(message).to_s
+      end
+
+      def message
+        @message
+      end
+    end
 
 
     module Message
-      def not_contained_in_popup message
-        "Text #{highlight(message)} is not contained in the popup."
-      end
 
       private
-
       def highlight text
         "\e[1m#{text}\e[0m\e[31m"
       end
-
 
       class ElementNotFound
         include Message
@@ -58,6 +60,19 @@ module Prickle
           highlight(@element_identifier.to_s)
         end
       end
+
+      class TextNotContainedInPopup
+        include Message
+
+        def initialize message
+          @message = message
+        end
+
+        def to_s
+          "Text #{highlight(@message)} is not contained in the popup."
+        end
+      end
+
     end
 
   end
