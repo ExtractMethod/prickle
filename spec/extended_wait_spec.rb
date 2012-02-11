@@ -7,7 +7,7 @@ describe Prickle::Capybara do
     Capybara.default_driver = :selenium
   end
 
-  context 'Extended waits' do
+  context 'Extended waits', :javascript => true do
 
     before(:each) do
       Prickle::Capybara.wait_time = nil

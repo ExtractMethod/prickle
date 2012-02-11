@@ -8,7 +8,7 @@ describe Prickle::Capybara do
     Prickle::Capybara.wait_time = nil
   end
 
-  context 'Managing popups' do
+  context 'Managing popups', :javascript => true do
 
     before(:each) do
       prickly.visit '/'
