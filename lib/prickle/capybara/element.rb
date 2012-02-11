@@ -5,10 +5,13 @@ module Prickle
   module Capybara
     class Element
 
-      OF_ANY_TYPE = "*"
-
       require 'capybara/dsl'
       include ::Capybara::DSL
+
+      OF_ANY_TYPE = "*"
+      CONVERTED_TYPES = { :link => 'a',
+                          :paragraph => 'p'
+                        }
 
       private
 
@@ -50,7 +53,7 @@ module Prickle
       end
 
       def type
-        Prickle::TAGS[@type.to_sym] || @type
+        CONVERTED_TYPES[@type.to_sym] || @type
       end
 
       public

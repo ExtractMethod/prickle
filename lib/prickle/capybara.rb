@@ -1,9 +1,6 @@
 require_relative 'capybara/element'
 
 module Prickle
-  TAGS = { :link => 'a',
-    :paragraph => 'p'
-  }
 
   module Capybara
 
