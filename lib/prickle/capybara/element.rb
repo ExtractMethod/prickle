@@ -41,8 +41,8 @@ module Prickle
         find(:xpath, xpath)
       end
 
-      def type_of element
-        Prickle::TAGS[element.to_sym] || element
+      def type
+        Prickle::TAGS[@type.to_sym] || @type
       end
 
       public

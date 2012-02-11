@@ -11,11 +11,11 @@ module Prickle
       private
 
       def xpath_for_identifier
-        "//#{type_of(@type)}[#{identifier}]"
+        "//#{type}[#{identifier}]"
       end
 
       def xpath_for_identifier_and_text
-        "//#{type_of(@type)}[#{identifier} and contains(text(), '#{@text}')]"
+        "//#{type}[#{identifier} and contains(text(), '#{@text}')]"
 
       end
       def find_element_by_identifier
