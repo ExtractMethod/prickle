@@ -25,8 +25,8 @@ module Prickle
         end
       end
 
-      def xpath_for identifier
-        return identifier.each_pair.to_a.map do |key, value|
+      def identifier
+        return @identifier.each_pair.to_a.map do |key, value|
           "@#{key}='#{value}'"
         end.join ' and '
       end

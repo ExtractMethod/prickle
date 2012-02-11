@@ -3,7 +3,7 @@ module Prickle
     module Find
 
       def exists?
-        find_element_by_identifier @type, @identifier
+        find_element_by_identifier
       end
 
     end
