@@ -5,7 +5,7 @@ describe Prickle::Capybara do
 
   before do
     Capybara.default_driver = :selenium
-    Prickle::Capybara.wait_time = 2
+    Prickle::Capybara.wait_time = nil
   end
 
   context 'Managing popups' do

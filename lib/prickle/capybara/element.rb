@@ -62,6 +62,5 @@ module Prickle
       include Prickle::Capybara::Actions
 
     end
-
   end
 end
