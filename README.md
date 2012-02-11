@@ -80,3 +80,13 @@ click_input_by_name "blue" #click_<element_tag>_by_name "<name>"
 ```ruby
 div_contains_text? "text" #<element_tag>_contains_text? "text"
 ```
+
+## Popup actions
+
+```ruby
+confirm_popup  # can be used for both confirmation boxed and alert boxes
+
+dismiss_popup
+
+popup_message
+```
