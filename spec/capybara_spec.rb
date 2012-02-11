@@ -30,6 +30,14 @@ describe Prickle::Capybara do
       prickly.popup_message.should eq "Aborting."
       prickly.confirm_popup
     end
+
+    context "matching text" do
+      it "can verify the content of a popup" do
+        prickly.click_by_name "popups"
+        prickly.popup_message_contains? "Hello"
+        prickly.dismiss_popup
+      end
+    end
   end
 
   context 'Screenshots', :javascript => true do

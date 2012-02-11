@@ -1,7 +1,6 @@
 require_relative 'capybara/element'
 
 module Prickle
-
   module Capybara
 
     class << self
@@ -9,12 +8,8 @@ module Prickle
 
     end
 
-    def element type=Element::OF_ANY_TYPE, identifier
-      Element.new type, identifier
-    end
-
-    def find_by_name type=Element::OF_ANY_TYPE, name
-      element(type, :name => name).exists?
+    def capture_screen name=Time.now.strftime("%Y%m%d-%H.%M.%s")
+      page.driver.browser.save_screenshot Capybara.image_dir + name + ".jpg"
     end
 
     def click_by_name name
@@ -29,16 +24,20 @@ module Prickle
       page.driver.browser.switch_to.alert.dismiss
     end
 
-    def popup_message_contains? message
-      raise Capybara::MessageNotContainedInPopup, Error.new.not_contained_in_popup(message) unless popup_message.eql? message
+    def element type=Element::OF_ANY_TYPE, identifier
+      Element.new type, identifier
+    end
+
+    def find_by_name type=Element::OF_ANY_TYPE, name
+      element(type, :name => name).exists?
     end
 
     def popup_message
       page.driver.browser.switch_to.alert.text
     end
 
-    def capture_screen name=Time.now.strftime("%Y%m%d-%H.%M.%s")
-      page.driver.browser.save_screenshot Capybara.image_dir + name + ".jpg"
+    def popup_message_contains? message
+      raise Capybara::MessageNotContainedInPopup, Error.new.not_contained_in_popup(message) unless popup_message.eql? message
     end
 
     private

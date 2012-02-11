@@ -41,5 +41,6 @@ module Prickle
         "\e[1m#{text}\e[0m\e[31m"
       end
     end
+
   end
 end
