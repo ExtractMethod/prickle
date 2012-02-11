@@ -3,7 +3,7 @@ module Prickle
     module Click
 
       def click
-        find_element_by_identifier.click
+        find_element.click
       end
     end
   end

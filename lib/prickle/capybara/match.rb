@@ -3,33 +3,23 @@ module Prickle
     module Match
 
       def contains_text? text
-        handle_exception do
-          find_element_by_identifier_and_text
-        end
+        @text = text
+        find_element
       end
 
       private
 
-      def xpath_for_identifier
-        "//#{type}[#{identifier}]"
-      end
-
-      def xpath_for_identifier_and_text
-        "//#{type}[#{identifier} and contains(text(), '#{@text}')]"
+      def xpath
+        xpath = "//#{type}[#{identifier}"
+        xpath << " and contains(text(), '#{@text}')" if @text
+        xpath << "]"
 
       end
-      def find_element_by_identifier
+      def find_element
         handle_exception do
-          find_element_by xpath_for_identifier
+          find_element_by xpath
         end
       end
-
-      def find_element_by_identifier_and_text
-        handle_exception do
-          find_element_by xpath_for_identifier_and_text
-        end
-      end
-
     end
   end
 end

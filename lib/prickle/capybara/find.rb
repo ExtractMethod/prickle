@@ -3,9 +3,8 @@ module Prickle
     module Find
 
       def exists?
-        find_element_by_identifier
+        find_element
       end
-
     end
   end
 end
