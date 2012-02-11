@@ -1,6 +1,5 @@
 require 'capybara/dsl'
 require_relative 'actions'
-require_relative 'exceptions'
 
 module Prickle
   module Capybara

@@ -1,4 +1,5 @@
 require_relative 'capybara/element'
+require_relative 'exceptions'
 
 module Prickle
   module Capybara
