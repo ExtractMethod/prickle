@@ -1,8 +1,6 @@
 require File.join(File.dirname(__FILE__), "..", "lib", "prickle", "capybara")
 
 require 'rspec'
-require 'capybara'
-require 'capybara/dsl'
 require 'prickle/capybara'
 
 class Prickly
