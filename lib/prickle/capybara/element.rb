@@ -22,7 +22,7 @@ module Prickle
       end
 
       def identifier
-        return @identifier.each_pair.to_a.map { |k, v| "@#{k}='#{v}'" }.join " and "
+        @identifier.each_pair.to_a.map { |k, v| "@#{k}='#{v}'" }.join " and "
       end
 
       def type
@@ -51,10 +51,13 @@ module Prickle
         begin
           block.call
         rescue Exception => e
-          error_message = Error.new(@type, @identifier, @text, e).message
-          raise ElementNotFound, error_message if e.class.to_s == "Capybara::ElementNotFound"
+          raise ElementNotFound, element_not_found_message if e.class == ::Capybara::ElementNotFound
           raise
         end
+      end
+
+      def element_not_found_message
+        Error.new(@type, @identifier, @text, e).message
       end
 
       public
