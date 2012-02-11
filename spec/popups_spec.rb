@@ -30,5 +30,15 @@ describe Prickle::Capybara do
       prickly.popup_message.should eq "Aborting."
       prickly.confirm_popup
     end
+
+    it 'can capture the screen' do
+      screenshot_name = Time.now.strftime("%Y%m%d-%H.%M.%s")
+      prickly.capture_screen screenshot_name
+      `ls #{Prickle::Capybara.image_dir}`.should include "#{screenshot_name}"
+    end
+
+    after do
+      `rm -f #{Prickle::Capybara.image_dir}/*.jpg`
+    end
   end
 end

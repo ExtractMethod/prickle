@@ -5,7 +5,7 @@ module Prickle
   module Capybara
 
     class << self
-      attr_accessor :wait_time
+      attr_accessor :wait_time, :image_dir
 
     end
 
@@ -31,6 +31,10 @@ module Prickle
 
     def popup_message
       page.driver.browser.switch_to.alert.text
+    end
+
+    def capture_screen name=Time.now.strftime("%Y%m%d-%H.%M.%s")
+      page.driver.browser.save_screenshot Capybara.image_dir + name + ".jpg"
     end
 
     private
