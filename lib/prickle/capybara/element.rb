@@ -10,6 +10,8 @@ module Prickle
       require 'capybara/dsl'
       include ::Capybara::DSL
 
+      private
+
       def initialize type="*", identifier
         @identifier = identifier
         @type = type
@@ -42,6 +44,8 @@ module Prickle
       def type_of element
         Prickle::TAGS[element.to_sym] || element
       end
+
+      public
 
       include Prickle::Actions::Find
       include Prickle::Actions::Match
