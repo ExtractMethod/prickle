@@ -1,11 +1,8 @@
-require_relative 'capybara/find'
-require_relative 'capybara/click'
-require_relative 'capybara/match'
-require_relative 'capybara/exceptions'
+require_relative 'capybara/element'
 
 module Prickle
   TAGS = { :link => 'a',
-           :paragraph => 'p'
+    :paragraph => 'p'
   }
 
   module Capybara
@@ -15,43 +12,31 @@ module Prickle
 
     end
 
-    include Prickle::Actions::Find
-    include Prickle::Actions::Click
-    include Prickle::Actions::Match
-
     def element type='*', identifier
-      @identifier = identifier
-      @type = type
-      self
+      Element.new type, identifier
+    end
+
+    def find_by_name type='*', name
+      element(type, :name => name).exists?
+    end
+
+    def click_by_name name
+      find_by_name(name).click
     end
 
     private
 
-    def xpath_for identifier
-      return identifier.each_pair.to_a.map do |key, value|
-        "@#{key}='#{value}'"
-      end.join ' and '
-    end
-
-    def find_element_by xpath
-      wait_until(Prickle::Capybara.wait_time) do
-        find(:xpath, xpath).visible?
-      end unless Prickle::Capybara.wait_time.nil?
-
-      find(:xpath, xpath)
-    end
-
-    def type_of element
-      Prickle::TAGS[element.to_sym] || element
-    end
-
-    def handle_exception &block
-      begin
-        block.call
-      rescue Exception => e
-        raise Capybara::ElementNotFound.new(@type, @identifier, @text, e) if e.class.to_s == "Capybara::ElementNotFound"
-        raise
+    def method_missing method, *args
+      if method =~ /(^.*)_contains_text\?$/
+        element($1, :name => args.first).contains_text? args[1]
+      elsif method =~ /^click_(.*)_by_name$/
+        element($1, :name => args.first).click
+      elsif method =~ /^find_(.*)_by_name$/
+        element($1, :name => args.first).exists?
+      else
+        super
       end
     end
+
   end
 end

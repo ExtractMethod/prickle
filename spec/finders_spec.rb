@@ -60,7 +60,7 @@ describe Prickle::Capybara do
 
   context 'DSL' do
     it 'can find an element' do
-      prickly.element(:name => 'blue').should == prickly
+      prickly.element(:name => 'blue').class.to_s.should == "Prickle::Capybara::Element"
     end
 
     it 'can match text in an element' do
