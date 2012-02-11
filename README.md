@@ -90,3 +90,11 @@ confirm_popup  # can be used for both confirmation boxed and alert boxes
 dismiss_popup
 popup_message
 ```
+
+## Capturing screenshots
+
+```ruby
+capture_screen
+
+capture_screen "<file>"
+```

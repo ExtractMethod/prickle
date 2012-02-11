@@ -8,11 +8,11 @@ describe Prickle::Capybara do
     Prickle::Capybara.wait_time = nil
   end
 
-  context 'Managing popups', :javascript => true do
+  before(:each) do
+    prickly.visit '/'
+  end
 
-    before(:each) do
-      prickly.visit '/'
-    end
+  context 'Managing popups', :javascript => true do
 
     it 'can confirm an alert box' do
       prickly.click_by_name 'popups'
@@ -30,6 +30,9 @@ describe Prickle::Capybara do
       prickly.popup_message.should eq "Aborting."
       prickly.confirm_popup
     end
+  end
+
+  context 'Screenshots', :javascript => true do
 
     it 'can capture the screen' do
       screenshot_name = Time.now.strftime("%Y%m%d-%H.%M.%s")
