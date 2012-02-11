@@ -3,9 +3,11 @@ module Prickle
 
     class ElementNotFound < Exception; end;
 
+    class MessageNotContainedInPopup < Exception; end;
+
     class Error
 
-      def initialize type, identifier, text, caught_exception
+      def initialize type=nil, identifier=nil, text=nil, caught_exception=nil
         @element_type = type
         @element_identifier = identifier
         @element_text = text
@@ -14,6 +16,10 @@ module Prickle
 
       def message
         "#{element_text} with properties #{identifier} #{text_string} was not found.\n\tError: #{@caught_exception.message}"
+      end
+
+      def not_contained_in_popup message
+        "Text #{highlight(message)} is not contained in the popup."
       end
 
       private

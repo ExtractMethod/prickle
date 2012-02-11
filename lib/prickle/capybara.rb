@@ -29,6 +29,10 @@ module Prickle
       page.driver.browser.switch_to.alert.dismiss
     end
 
+    def popup_message_contains? message
+      raise Capybara::MessageNotContainedInPopup, Error.new.not_contained_in_popup(message) unless popup_message.eql? message
+    end
+
     def popup_message
       page.driver.browser.switch_to.alert.text
     end
