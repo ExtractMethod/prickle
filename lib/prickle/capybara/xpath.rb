@@ -6,6 +6,10 @@ module Prickle
         ContainsValue.new(key, value).to_s
       end
 
+      def self.matches_value key, value
+        MatchesValue.new(key, value).to_s
+      end
+
       private
 
       def initialize key, value
@@ -23,7 +27,14 @@ module Prickle
         def to_s
           "contains(@#{key}, '#{@value}')"
         end
+      end
 
+      class MatchesValue
+        include XPathFor
+
+        def to_s
+          "@#{@key}='#{@value}'"
+        end
       end
     end
   end

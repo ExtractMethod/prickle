@@ -28,11 +28,7 @@ module Prickle
       end
 
       def convert_to_xpath key, value
-        key.to_s.include?('.like') ? Capybara::XPathFor::contains_value(key, value) : exact_match_for(key, value)
-      end
-
-      def exact_match_for key, value
-        "@#{key}='#{value}'"
+        key.to_s.include?('.like') ? Capybara::XPathFor::contains_value(key, value) : Capybara::XPathFor::matches_value(key, value)
       end
 
       def type
