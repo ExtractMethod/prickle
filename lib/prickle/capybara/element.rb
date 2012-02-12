@@ -25,7 +25,7 @@ module Prickle
         @identifier
       end
 
-      def type
+      def type_as_tag
         CONVERTED_TYPES[@type.to_sym] || @type
       end
 
@@ -42,7 +42,7 @@ module Prickle
       end
 
       def xpath
-        XPath::for_element_with type, identifier
+        XPath::for_element_with type_as_tag, identifier
       end
 
       def handle_exception &block
