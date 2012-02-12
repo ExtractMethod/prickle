@@ -65,6 +65,7 @@ element(:input, :name => "blue")
 element(:name => "flower").exists?
 element(:name => "flower").click
 element(:name => "flower").contains_text? "Roses"
+element(:name => "flower").has_text? "Anemone"  # exact match
 ```
 
 ## Alternative syntax
