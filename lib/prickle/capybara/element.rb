@@ -33,16 +33,16 @@ module Prickle
         handle_exception { find_element_by_xpath }
       end
 
-      def xpath
-        XPath::for_element_with type, identifier
-      end
-
       def find_element_by_xpath
         wait_until(Capybara.wait_time) do
           find(:xpath, xpath).visible?
         end unless Capybara.wait_time.nil?
 
         find :xpath, xpath
+      end
+
+      def xpath
+        XPath::for_element_with type, identifier
       end
 
       def handle_exception &block
