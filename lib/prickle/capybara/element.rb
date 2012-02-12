@@ -22,13 +22,7 @@ module Prickle
       end
 
       def identifier
-        @identifier.each_pair.inject([]) do |xpath_str, (key, value)|
-          xpath_str << convert_to_xpath(key, value)
-        end.join " and "
-      end
-
-      def convert_to_xpath identifier, value
-        Capybara::XPath.with identifier, value
+        @identifier
       end
 
       def type
@@ -40,17 +34,15 @@ module Prickle
       end
 
       def xpath
-        xpath = "//#{type}[#{identifier}"
-        xpath << " and contains(text(), '#{@text}')" if @text
-        xpath << "]"
+        XPath::for_element_with type, identifier
       end
 
       def find_element_by_xpath
-        wait_until(Prickle::Capybara.wait_time) do
+        wait_until(Capybara.wait_time) do
           find(:xpath, xpath).visible?
-        end unless Prickle::Capybara.wait_time.nil?
+        end unless Capybara.wait_time.nil?
 
-        find(:xpath, xpath)
+        find :xpath, xpath
       end
 
       def handle_exception &block

@@ -8,6 +8,7 @@ module Prickle
 
       def contains_text? text
         @text = text
+        @identifier[:"text()".like] = text
         find_element
       end
 
