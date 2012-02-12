@@ -10,6 +10,7 @@ module Prickle
       private
 
       class Element
+
         def initialize type, identifier
           @type = type
           @identifier = identifier
@@ -20,9 +21,9 @@ module Prickle
         end
 
         def identifier
-          return @identifier.each_pair.inject([]) do |xpath_str, (key, value)|
-            xpath_str << XPath::Expression.new(key, value).to_s
-          end.join " and "
+          return @identifier.each_pair.inject([]) do | xpath, (identifier, value) |
+            xpath << XPath::Expression.new(identifier, value).to_s
+          end.join Expression::SEPARATOR
         end
       end
 

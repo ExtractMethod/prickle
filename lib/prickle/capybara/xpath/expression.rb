@@ -5,6 +5,7 @@ module Prickle
       class Expression
         CONTAINS = ".like"
         TEXT_IDENTIFIER = "text()"
+        SEPARATOR = " and "
 
         def initialize identifier, value
           @identifier = identifier
