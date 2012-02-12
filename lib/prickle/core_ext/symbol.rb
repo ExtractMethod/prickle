@@ -1,6 +1,6 @@
 class Symbol
 
   def like
-    "contains(@#{self.to_s}, '<value>')"
+    "#{self}.like"
   end
 end

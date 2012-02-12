@@ -27,11 +27,16 @@ module Prickle
       end
 
       def convert_to_xpath key, value
-        if key.to_s.include? "<value>"
-          key.sub "<value>", value
-        else
-          "@#{key}='#{value}'"
-        end
+        key.to_s.include?('.like') ? contains_match_for(key, value) : exact_match_for(key, value)
+      end
+
+      def contains_match_for key, value
+        key = key.chomp '.like'
+        "contains(@#{key}, '#{value}')"
+      end
+
+      def exact_match_for key, value
+        "@#{key}='#{value}'"
       end
 
       def type
