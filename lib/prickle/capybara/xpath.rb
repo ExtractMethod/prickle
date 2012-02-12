@@ -1,39 +1,58 @@
 module Prickle
   module Capybara
-    module XPathFor
+    module XPath
 
-      def self.contains_value key, value
-        ContainsValue.new(key, value).to_s
-      end
-
-      def self.matches_value key, value
-        MatchesValue.new(key, value).to_s
+      def self.with identifier, value
+        XPath::Expression.new(identifier, value).to_s
       end
 
       private
 
-      def initialize key, value
-        @key = key
-        @value = value
-      end
+      class Expression
 
-      class ContainsValue
-        include XPathFor
-
-        def key
-          @key.chomp '.like'
+        def initialize identifier, value
+          @identifier = identifier
+          @value = value
         end
 
         def to_s
-          "contains(@#{key}, '#{@value}')"
+          find_exact_match? ? MatchesValue.new(@identifier, @value).to_s : ContainsValue.new(@identifier, @value).to_s
+        end
+
+        private
+
+        def find_exact_match?
+          !@identifier.to_s.include?('.like')
+        end
+
+        def identifier
+          @identifier
+        end
+
+        def attribute
+          "@#{identifier}"
         end
       end
 
-      class MatchesValue
-        include XPathFor
+
+      class ContainsValue < XPath::Expression
 
         def to_s
-          "@#{@key}='#{@value}'"
+          "contains(#{attribute}, '#{@value}')"
+        end
+
+        private
+
+        def identifier
+          @identifier.chomp '.like'
+        end
+      end
+
+
+      class MatchesValue < XPath::Expression
+
+        def to_s
+          "#{attribute}='#{@value}'"
         end
       end
     end
