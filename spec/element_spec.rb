@@ -13,16 +13,8 @@ describe Prickle::Capybara::Element do
 
   context "Matchers" do
 
-    it 'can find an element by a contained and an exact match in its identifier' do
-      prickly.element(:name.like => 'purpli', :id => 'one').contains_text? "erm"
-    end
-
     it 'can match text in an element' do
       prickly.element(:name => 'yellow').contains_text? "Hello!"
-    end
-
-    it 'can match text in specific elements' do
-      prickly.element(:li, :name => 'purple').contains_text? "Im not purple!"
     end
 
     it 'can match on link type elements' do
@@ -36,6 +28,15 @@ describe Prickle::Capybara::Element do
     it 'can find an element by multiple identifiers' do
       prickly.element(:name => 'orangey', :class => 'pink').contains_text? "Blue hippos"
     end
+
+    it 'can find an element by a string contained in its identifier' do
+      prickly.element(:name.like => 'purpli').contains_text? "erm"
+    end
+
+    it 'can find an element by a contained and an exact match in its identifier' do
+      prickly.element(:name.like => 'purpli', :id => 'one').contains_text? "erm"
+    end
+
   end
 
   context "#click" do
@@ -47,8 +48,15 @@ describe Prickle::Capybara::Element do
 
   context "#contains_text" do
 
-    it 'can find an element by a string contained in its identifier' do
-      prickly.element(:name.like => 'purpli').contains_text? "erm"
+    it 'can check if text is included in an element' do
+      prickly.element(:li, :name => 'purple').contains_text? "Im not purple!"
+    end
+  end
+
+  context "#has_text?" do
+
+    it "can match the text in an element" do
+      prickly.element(:name => 'gum').has_text? "bubblegum"
     end
   end
 

@@ -12,6 +12,12 @@ module Prickle
         find_element
       end
 
+      def has_text? text
+        @text = text
+        @identifier[:"text()"] = text
+        find_element
+      end
+
       def exists?
         find_element
       end

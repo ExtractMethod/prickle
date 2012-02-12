@@ -19,11 +19,11 @@ module Prickle
         private
 
         def find_exact_match?
-          !@identifier.to_s.include? CONTAINS
+          !identifier.include? CONTAINS
         end
 
         def identifier
-          @identifier
+          @identifier.to_s
         end
 
         def attribute
