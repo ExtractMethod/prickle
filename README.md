@@ -12,7 +12,7 @@ To install prickle execute
 gem install prickle
 ```
 
-and to configure update your *features/support/env.rb* to include the following:
+Configure by updating the *features/support/env.rb* to include the following:
 
 ```ruby
 require 'prickle/capybara'    # require
@@ -100,6 +100,12 @@ popup_message_contains? "<text>"
 ```
 
 ## Capturing screenshots
+
+Configure the directory where you want the screenshots to be saved
+
+```ruby
+Prickle::Capybara.image_dir = File.dirname(__FILE__) + "/screenshots/"
+```
 
 ```ruby
 capture_screen
