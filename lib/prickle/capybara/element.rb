@@ -1,4 +1,5 @@
 require 'capybara/dsl'
+require_relative 'xpath'
 require_relative 'actions'
 
 module Prickle
@@ -27,12 +28,7 @@ module Prickle
       end
 
       def convert_to_xpath key, value
-        key.to_s.include?('.like') ? contains_match_for(key, value) : exact_match_for(key, value)
-      end
-
-      def contains_match_for key, value
-        key = key.chomp '.like'
-        "contains(@#{key}, '#{value}')"
+        key.to_s.include?('.like') ? Capybara::XPathFor::contains_value(key, value) : exact_match_for(key, value)
       end
 
       def exact_match_for key, value
