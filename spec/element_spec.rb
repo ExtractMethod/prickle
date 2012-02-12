@@ -11,6 +11,14 @@ describe Prickle::Capybara::Element do
     prickly.element(:name => 'blue').class.to_s.should == "Prickle::Capybara::Element"
   end
 
+  it 'can find an element by a string contained in its identifier' do
+    prickly.element(:name.like => 'purpli').contains_text? "erm"
+  end
+
+  it 'can find an element by a contained and an exact match in its identifier' do
+    prickly.element(:name.like => 'purpli', :id => 'one').contains_text? "erm"
+  end
+
   it 'can match text in an element' do
     prickly.element(:name => 'yellow').contains_text? "Hello!"
   end

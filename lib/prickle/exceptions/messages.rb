@@ -18,7 +18,7 @@ module Prickle
         end
 
         def to_s
-          "#{element_text} with properties #{identifier} #{text_string} was not found.\n\tError: #{@caught_exception.message}"
+          "#{element_text} with identifier #{identifier}#{text_string} was not found.\n\tError: #{@caught_exception.message}"
         end
 
         private

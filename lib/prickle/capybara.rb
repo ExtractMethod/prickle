@@ -1,5 +1,6 @@
 require_relative 'capybara/element'
 require_relative 'exceptions'
+require_relative 'core_ext/symbol'
 
 module Prickle
   module Capybara
@@ -62,4 +63,5 @@ module Prickle
     end
 
   end
+
 end

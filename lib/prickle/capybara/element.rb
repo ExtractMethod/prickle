@@ -21,7 +21,17 @@ module Prickle
       end
 
       def identifier
-        @identifier.each_pair.to_a.map { |k, v| "@#{k}='#{v}'" }.join " and "
+        @identifier.each_pair.inject([]) do |xpath_str, (key, value)|
+          xpath_str << convert_to_xpath(key, value)
+        end.join " and "
+      end
+
+      def convert_to_xpath key, value
+        if key.to_s.include? "<value>"
+          key.sub "<value>", value
+        else
+          "@#{key}='#{value}'"
+        end
       end
 
       def type
@@ -56,7 +66,7 @@ module Prickle
       end
 
       def element_not_found caught_exception
-        Exceptions::ElementNotFound.new(@type, @identifier, @text, caught_exception)
+        Exceptions::ElementNotFound.new(@type, identifier, @text, caught_exception)
       end
 
       public
