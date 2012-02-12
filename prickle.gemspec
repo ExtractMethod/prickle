@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.author      = "Despo Pentara"
   s.email       = "despo@extractmethod.com"
   s.homepage    = "https://github.com/ExtractMethod/prickle"
-  s.summary     = "A simple DSL wrapped around Capybara for matching elements using html tags."
-  s.description = "A simple DSL wrapped around Capybara for matching elements using html tags."
+  s.summary     = "A simple DSL extending Capybara."
+  s.description = "A simple DSL extending Capybara."
   s.required_ruby_version = '>= 1.9.2'
 
   s.licenses = ["MIT"]
