@@ -4,6 +4,7 @@ module Prickle
 
       class Expression
         CONTAINS = ".like"
+        TEXT_IDENTIFIER = "text()"
 
         def initialize identifier, value
           @identifier = identifier
@@ -25,7 +26,7 @@ module Prickle
         end
 
         def attribute
-          return identifier if identifier.eql? "text()"
+          return identifier if identifier.eql? TEXT_IDENTIFIER
           "@#{identifier}"
         end
       end
@@ -40,7 +41,7 @@ module Prickle
         private
 
         def identifier
-          @identifier.chomp '.like'
+          @identifier.chomp CONTAINS
         end
       end
 
