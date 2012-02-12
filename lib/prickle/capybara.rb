@@ -10,10 +10,6 @@ module Prickle
 
     end
 
-    def capture_screen name=screenshot_name
-      page.driver.browser.save_screenshot Capybara.image_dir + name + ".jpg"
-    end
-
     def click_by_name name
       find_by_name(name).click
     end
@@ -42,6 +38,10 @@ module Prickle
       raise Exceptions::MessageNotContainedInPopup.new(message) unless popup_message.eql? message
     end
 
+    def capture_screen name=screenshot_name
+      page.driver.browser.save_screenshot Capybara.image_dir + name + ".jpg"
+    end
+
     private
 
     TIME_FORMATTER = "%Y%m%d-%H.%M.%s"
@@ -61,7 +61,5 @@ module Prickle
     def screenshot_name
       Time.now.strftime(TIME_FORMATTER)
     end
-
   end
-
 end

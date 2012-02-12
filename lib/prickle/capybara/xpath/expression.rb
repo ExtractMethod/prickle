@@ -53,7 +53,9 @@ module Prickle
           "#{attribute}='#{@value}'"
         end
       end
+
     end
+
   end
 end
 
