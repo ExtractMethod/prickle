@@ -45,6 +45,12 @@ element(:id => "key")
 element(:class => "key", :id => "button")
 ```
 
+You can also find elements by a value contained in the identifier
+
+```ruby
+element(:name.like => "blue") # will match <button name="blue_12345">
+```
+
 ### Find elements by type and html tag(s)
 
 ```ruby
