@@ -68,6 +68,16 @@ element(:name => "flower").contains_text? "Roses"
 element(:name => "flower").has_text? "Anemone"  # exact match
 ```
 
+## Popup
+
+```ruby
+popup.confirm
+popup.dismiss
+popup.message
+
+popup.contains_message? "<text>"
+```
+
 ## Alternative syntax
 
 ### Find
@@ -88,16 +98,6 @@ click_input_by_name "blue" #click_<element_tag>_by_name "<name>"
 
 ```ruby
 div_contains_text? "text" #<element_tag>_contains_text? "text"
-```
-
-## Popup actions
-
-```ruby
-confirm_popup  # can be used for both confirmation boxed and alert boxes
-dismiss_popup
-popup_message
-
-popup_message_contains? "<text>"
 ```
 
 ## Capturing screenshots
