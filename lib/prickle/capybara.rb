@@ -1,4 +1,5 @@
 require_relative 'capybara/element'
+require_relative 'capybara/popup'
 require_relative 'exceptions'
 require_relative 'core_ext/symbol'
 
@@ -14,13 +15,6 @@ module Prickle
       find_by_name(name).click
     end
 
-    def confirm_popup
-      page.driver.browser.switch_to.alert.accept
-    end
-
-    def dismiss_popup
-      page.driver.browser.switch_to.alert.dismiss
-    end
 
     def element type=Element::OF_ANY_TYPE, identifier
       Element.new type, identifier
@@ -30,12 +24,24 @@ module Prickle
       element(type, :name => name).exists?
     end
 
+    def popup
+      Popup.new
+    end
+
+    def confirm_popup
+      popup.confirm
+    end
+
+    def dismiss_popup
+      popup.dismiss
+    end
+
     def popup_message
-      page.driver.browser.switch_to.alert.text
+      popup.message
     end
 
     def popup_message_contains? message
-      raise Exceptions::MessageNotContainedInPopup.new(message) unless popup_message.eql? message
+      popup.contains_message? message
     end
 
     def capture_screen name=screenshot_name
