@@ -22,6 +22,14 @@ module Prickle
         find_element
       end
 
+      private
+
+      ALIASES = { "find" => :exists? }
+
+      def self.for method, properties
+        method = ALIASES[method] || method.to_sym
+        [ method, properties ].compact
+      end
     end
   end
 end

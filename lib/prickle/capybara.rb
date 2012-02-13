@@ -46,20 +46,30 @@ module Prickle
 
     TIME_FORMATTER = "%Y%m%d-%H.%M.%s"
 
+    def screenshot_name
+      Time.now.strftime(TIME_FORMATTER)
+    end
+
     def method_missing method, *args
-      if method =~ /(^.*)_contains_text\?$/
-        element($1, :name => args.first).contains_text? args[1]
-      elsif method =~ /^click_(.*)_by_name$/
-        element($1, :name => args.first).click
-      elsif method =~ /^find_(.*)_by_name$/
-        element($1, :name => args.first).exists?
+      if method =~ /(^.*)_(contains_text\?)|(click|find)_(.*)_by_name/
+        call_element_with $1, $2, $3, $4, args
       else
         super
       end
     end
 
-    def screenshot_name
-      Time.now.strftime(TIME_FORMATTER)
+    def call_element_with *properties
+      node = element_with properties
+      type = properties[0] || properties[3]
+      name = properties[4][0]
+      element(type, :name => name).send *Actions::for(node[:method], node[:args])
+    end
+
+    def element_with properties
+      element = { }
+      element[:method] = properties[1] || properties[2]
+      element[:args] = properties[4][1]
+      element
     end
   end
 end
