@@ -51,7 +51,7 @@ module Prickle
     end
 
     def method_missing method, *args
-      if method =~ /(^.*)_(contains_text\?)|(click|find)_(.*)_by_name/
+      if method =~ Element::MISSING_METHOD_REGEX
         call_element_with $1, $2, $3, $4, args
       else
         super

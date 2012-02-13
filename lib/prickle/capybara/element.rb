@@ -7,6 +7,7 @@ module Prickle
     class Element
 
       include ::Capybara::DSL
+      include Prickle::Capybara::Actions
 
       OF_ANY_TYPE = "*"
       CONVERTED_TYPES = { :link => 'a',
@@ -14,6 +15,8 @@ module Prickle
                         }
 
       private
+
+      MISSING_METHOD_REGEX = /(^.*)_(contains_text\?)|(click|find)_(.*)_by_name/
 
       def initialize type=OF_ANY_TYPE, identifier
         @identifier = identifier
@@ -60,7 +63,6 @@ module Prickle
 
       public
 
-      include Prickle::Capybara::Actions
 
     end
   end
