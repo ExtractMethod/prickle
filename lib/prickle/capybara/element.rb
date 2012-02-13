@@ -61,9 +61,12 @@ module Prickle
         Exceptions::ElementNotFound.new(@type, identifier, @text, caught_exception)
       end
 
-      public
-
-
+      def self.extract_method_missing properties
+        element = { }
+        element[:method] = properties[1] || properties[2]
+        element[:args] = properties[4][1]
+        element
+      end
     end
   end
 end

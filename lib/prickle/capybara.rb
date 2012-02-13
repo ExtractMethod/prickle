@@ -65,17 +65,9 @@ module Prickle
     end
 
     def call_element_with *properties
-      node = element_with properties
       type = properties[0] || properties[3]
       name = properties[4][0]
-      element(type, :name => name).send *Actions::for(node[:method], node[:args])
-    end
-
-    def element_with properties
-      element = { }
-      element[:method] = properties[1] || properties[2]
-      element[:args] = properties[4][1]
-      element
+      element(type, :name => name).send *Actions::for(properties)
     end
   end
 end

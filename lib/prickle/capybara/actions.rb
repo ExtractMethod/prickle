@@ -26,9 +26,10 @@ module Prickle
 
       ALIASES = { "find" => :exists? }
 
-      def self.for method, properties
-        method = ALIASES[method] || method.to_sym
-        [ method, properties ].compact
+      def self.for properties
+        element = Element::extract_method_missing properties
+        method = ALIASES[element[:method]] || element[:method].to_sym
+        [ method, element[:args] ].compact
       end
     end
   end
