@@ -13,9 +13,9 @@
     <li name="purple">Im not purple!</li>
     <a name="orangey">Me too!!</a>
 
-    <div name='lagged' class='hidden'> I lag</div>
-    <div name='never_appear' class='hidden'> I lag</div>
-    <div name='orangey'  class='pink'> Blue hippos</div>
+    <div name='lagged' class='hidden' style='display: none;'> I lag</div>
+    <div name='never_appear' style='display: none;'> I lag</div>
+    <div name='orangey' class='pink'> Blue hippos</div>
 
     <p id='coffee'>Capuccino</p>
 
@@ -29,7 +29,6 @@
 
     <script>
       $(document).ready(function() {
-        $('.hidden').hide();
         setTimeout(showHidden, 3000);
       });
 
