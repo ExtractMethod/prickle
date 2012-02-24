@@ -32,7 +32,13 @@ To enable this feature you need to set the *Prickle::Capybara.wait_time* propert
 Prickle::Capybara.wait_time = 5
 ```
 
-If you only want to extend the wait time for a particular feature, then you need to reset the wait time using *Prickle::Capybara = nil*.
+If you only want to extend the wait time for a particular feature, then you need to reset the wait time using *Prickle::Capybara = nil* after your call..
+
+```ruby
+Prickle::Capybara.wait_time = 5
+element(:href => "http://google.com").click
+Prickle::Capybara.wait_time = nil             # reset wait time
+```
 
 ## Usage
 
