@@ -4,11 +4,10 @@ describe Prickle::Capybara do
   let(:prickly) { Prickly.new }
 
   before do
-    Capybara.default_driver = :selenium
     prickly.visit '/'
   end
 
-  context 'Extended waits', :javascript => true do
+  context 'Extended waits', :javascript => true, :driver => :selenium do
 
     before(:each) do
       Prickle::Capybara.wait_time = nil

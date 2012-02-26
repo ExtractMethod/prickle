@@ -4,12 +4,11 @@ describe Prickle::Capybara do
   let(:prickly) { Prickly.new }
 
   before do
-    Capybara.default_driver = :selenium
     Prickle::Capybara.wait_time = nil
     prickly.visit '/'
   end
 
-  context 'Screenshots', :javascript => true do
+  context 'Screenshots', :javascript => true, :driver => :selenium do
 
     it 'can capture the screen' do
       screenshot_name = Time.now.strftime("%Y%m%d-%H.%M.%s")

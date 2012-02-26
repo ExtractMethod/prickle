@@ -4,7 +4,6 @@ describe Prickle::Capybara::Popup do
   let(:prickly) { Prickly.new }
 
   before do
-    Capybara.default_driver = :selenium
     Prickle::Capybara.wait_time = nil
   end
 

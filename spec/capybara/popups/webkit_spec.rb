@@ -4,15 +4,19 @@ describe Prickle::Capybara::Popup do
   let(:prickly) { Prickly.new }
 
   before do
-    Capybara.default_driver = :webkit
     Prickle::Capybara.wait_time = nil
+    Capybara.current_driver = :webkit
   end
 
   before(:each) do
     prickly.visit '/'
   end
 
-  context 'Managing webkit popups', :js => true do
+  after do
+    Capybara.use_default_driver
+  end
+
+  context 'Managing webkit popups', :js => true, :driver => :webkit do
     it 'can confirm an alert box' do
 
      alert = prickly.popup.accept {

@@ -6,7 +6,7 @@ module Prickle
     class Popup
 
       def initialize
-        return @base = Popups::Webkit.new if ::Capybara::current_driver == :webkit
+        return @base = Popups::Webkit.new if ::Capybara.current_driver == :webkit or ::Capybara.javascript_driver == :webkit
         @base = Popups::Selenium.new
       end
 
