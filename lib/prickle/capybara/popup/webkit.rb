@@ -38,7 +38,7 @@ module Prickle
           @type.to_s
         end
 
-        def manage_popup accept=true
+        def manage_popup accept
           listen_and accept
           yield
           restore
@@ -46,7 +46,7 @@ module Prickle
           self
         end
 
-        def listen_and accept=true
+        def listen_and accept
           page.execute_script %{
           window.original_#{type}_function = window.#{type}
           window.#{type}_msg = null
