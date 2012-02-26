@@ -3,43 +3,63 @@ module Prickle
     module Popups
       class Webkit
 
-      include ::Capybara::DSL
+        include ::Capybara::DSL
 
-        def contains_message? message
-          raise Exceptions::MessageNotContainedInPopup.new(self.message) unless self.message.include? message
-        end
-
-        def accept &block
-          manage_js_popup true, &block
+        def confirm &block
+          set_type_to :confirm
+          manage_popup true, &block
         end
 
         def dismiss &block
-          manage_js_popup false, &block
+          set_type_to :confirm
+          manage_popup false, &block
         end
 
-        def accept_alert accept=true
-          page.execute_script "window.original_alert_function = window.alert"
-          page.execute_script "window.alert_msg = null"
-          page.execute_script "window.alert = function(msg) { window.alert_msg = msg; return #{!!accept}; }"
-          yield
-          page.execute_script "window.alert = window.original_alert_function"
-          @message =  page.evaluate_script "window.alert_msg"
-          self
+        def accept &block
+          set_type_to :alert
+          manage_popup true, &block
         end
 
         def message
           @message
         end
 
+        def contains_message? message
+          raise Exceptions::MessageNotContainedInPopup.new(self.message) unless self.message.include? message
+        end
+
         private
-        def manage_js_popup accept
-          page.execute_script "window.original_confirm_function = window.confirm"
-          page.execute_script "window.confirm_msg = null"
-          page.execute_script "window.confirm = function(msg) { window.confirm_msg = msg; return #{!!accept}; }"
+
+        def set_type_to type
+          @type = type
+        end
+
+        def type
+          @type.to_s
+        end
+
+        def manage_popup accept=true
+          listen_and accept
           yield
-          page.execute_script "window.confirm = window.original_confirm_function"
-          @message = page.evaluate_script "window.confirm_msg"
+          restore
+          capture_message
           self
+        end
+
+        def listen_and accept=true
+          page.execute_script %{
+          window.original_#{type}_function = window.#{type}
+          window.#{type}_msg = null
+          window.#{type} = function(msg) { window.#{type}_msg = msg; return #{!!accept}; }
+          }
+        end
+
+        def restore
+          page.execute_script "window.#{type} = window.original_#{type}_function"
+        end
+
+        def capture_message
+          @message = page.evaluate_script "window.#{type}_msg"
         end
 
       end

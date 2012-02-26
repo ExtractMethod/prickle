@@ -76,6 +76,8 @@ element(:name => "flower").has_text? "Anemone"  # exact match
 
 ### Popup
 
+**Selenium**
+
 ```ruby
 popup.confirm
 popup.dismiss
@@ -83,6 +85,35 @@ popup.message
 
 popup.contains_message? "<text>"
 ```
+
+**Webkit**
+
+```ruby
+popup.confirm {
+  #block that triggers confirmation dialog
+}
+
+popup.dismiss {
+  #block that triggers confirmation dialog
+}
+
+popup.accept {
+  #block that triggers alert
+}
+```
+
+Verifying popup messageo
+
+```ruby
+
+alert = popup.accept {
+  #block that triggers alert
+}
+
+alert.contains_message? "<text>"
+
+```
+
 
 ## Alternative syntax
 
