@@ -3,7 +3,7 @@ module Prickle
     module Popups
       class Selenium
 
-      include ::Capybara::DSL
+        include ::Capybara::DSL
 
         def initialize
           @popup = page.driver.browser.switch_to.alert
@@ -22,8 +22,9 @@ module Prickle
         end
 
         def contains_message? message
-          raise Exceptions::MessageNotContainedInPopup.new(message) unless self.message.eql? message
+          raise Exceptions::MessageNotContainedInPopup.new(self.message) unless self.message.eql? message
         end
+
       end
     end
   end

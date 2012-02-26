@@ -5,10 +5,6 @@ module Prickle
 
       include ::Capybara::DSL
 
-        def message
-          @message
-        end
-
         def contains_message? message
           raise Exceptions::MessageNotContainedInPopup.new(self.message) unless self.message.include? message
         end
