@@ -1,6 +1,7 @@
 require File.join(File.dirname(__FILE__), "..", "lib", "prickle", "capybara")
 
 require 'rspec'
+require 'capybara-webkit'
 require 'prickle/capybara'
 
 class Prickly

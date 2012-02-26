@@ -1,27 +1,21 @@
+require_relative 'popup/webkit'
+require_relative 'popup/selenium'
+
 module Prickle
   module Capybara
     class Popup
 
-      include ::Capybara::DSL
-
       def initialize
-        @popup = page.driver.browser.switch_to.alert
+        return @popup = Popups::Webkit.new if ::Capybara::current_driver == :webkit
+        @popup = Popups::Selenium.new
       end
 
-      def confirm
-        @popup.accept
-      end
-
-      def dismiss
-        @popup.dismiss
-      end
-
-      def message
-        @popup.text
-      end
-
-      def contains_message? message
-        raise Exceptions::MessageNotContainedInPopup.new(message) unless self.message.eql? message
+      def method_missing method, *args, &block
+        if @popup.respond_to? method
+          @popup.send method, *args, &block
+        else
+          super
+        end
       end
     end
   end

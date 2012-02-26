@@ -12,7 +12,7 @@ describe Prickle::Capybara::Popup do
     prickly.visit '/'
   end
 
-  context 'Managing popups', :javascript => true do
+  context 'Managing selenium popups', :javascript => true do
 
     it 'can confirm an alert box' do
       prickly.click_by_name 'popups'
