@@ -13,7 +13,7 @@ describe Prickle::Capybara::Popup do
   end
 
   context 'Managing webkit popups', :js => true do
-    it 'can confirm an alert box', :js => true do
+    it 'can confirm an alert box' do
 
      alert = prickly.popup.accept_alert {
         prickly.click_by_name 'popups'
@@ -37,14 +37,5 @@ describe Prickle::Capybara::Popup do
       alert.contains_message? "Click yes to continue"
     end
 
-    context "matching text" do
-      it "can verify the content of a popup" do
-        alert = prickly.popup.accept_alert {
-          prickly.click_by_name "popups"
-        }
-
-        alert.contains_message? "Hel"
-      end
-    end
   end
 end
