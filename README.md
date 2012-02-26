@@ -102,7 +102,7 @@ popup.accept {
 }
 ```
 
-Verifying popup messageo
+Verifying popup messages
 
 ```ruby
 
