@@ -10,6 +10,7 @@ module Prickle
         @base = Popups::Selenium.new
       end
 
+
       def method_missing method, *args, &block
         if @base.respond_to? method
           @base.send method, *args, &block
