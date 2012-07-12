@@ -12,10 +12,7 @@ module Prickle
         alias :popup :initialize
 
         def confirm &block
-          if block_given?
-            block.call
-            @message = popup.text
-          end
+          handle_webkit_syntax &block if block_given?
           popup.accept
           self
         end
@@ -23,13 +20,7 @@ module Prickle
         alias :accept :confirm
 
         def dismiss &block
-          if block_given?
-            block.call
-            @message = popup.text
-            sleep 1
-            popup.accept
-            return self
-          end
+          return handle_webkit_syntax_dismiss &block if block_given?
           popup.dismiss
         end
 
@@ -39,6 +30,19 @@ module Prickle
 
         def contains_message? message
           raise Exceptions::MessageNotContainedInPopup.new(self.message) unless self.message.eql? message
+        end
+
+        private
+
+        def handle_webkit_syntax_dismiss &block
+          handle_webkit_syntax &block
+          popup.accept
+          self
+        end
+
+        def handle_webkit_syntax &block
+          block.call
+          @message = popup.text
         end
 
       end
