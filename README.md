@@ -76,7 +76,7 @@ element(:name => "flower").has_text? "Anemone"  # exact match
 
 ### Popup
 
-**Selenium**
+**Selenium simplified**
 
 ```ruby
 popup.confirm
@@ -86,7 +86,9 @@ popup.message
 popup.contains_message? "<text>"
 ```
 
-**Webkit**
+**Webkit and Selenium**
+
+*This was implemented to enable for an easy switch between Webkit and Selenium. If you can suggest a better way of achieving this, open an issue or even better, send a pull request!*
 
 ```ruby
 popup.confirm {
