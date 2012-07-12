@@ -41,7 +41,7 @@ describe Prickle::Capybara::Popup do
 
 
   context "alternate popup syntax", :javascript => true do
-    it 'can confirm an alert box', :wip => true do
+    it 'can confirm an alert box' do
 
       alert = prickly.popup.accept {
         prickly.click_by_name 'popups'

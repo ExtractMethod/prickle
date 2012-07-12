@@ -6,15 +6,31 @@ module Prickle
         include ::Capybara::DSL
 
         def initialize
-          @popup = page.driver.browser.switch_to.alert
+          @popup = page.driver.browser.switch_to.alert rescue nil
         end
 
-        def confirm
-          @popup.accept
+        alias :popup :initialize
+
+        def confirm &block
+          if block_given?
+            block.call
+            @message = popup.text
+          end
+          popup.accept
+          self
         end
 
-        def dismiss
-          @popup.dismiss
+        alias :accept :confirm
+
+        def dismiss &block
+          if block_given?
+            block.call
+            @message = popup.text
+            sleep 1
+            popup.accept
+            return self
+          end
+          popup.dismiss
         end
 
         def message
