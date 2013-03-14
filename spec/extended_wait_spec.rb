@@ -22,7 +22,7 @@ describe Prickle::Capybara do
 
       it "can fail if an element doesn't appear after the default wait time" do
         Prickle::Capybara.wait_time = 1
-        expect { prickly.element(:name => 'never_appear').contains_text? "I lag" }.to raise_error Capybara::TimeoutError
+        expect { prickly.element(:name => 'never_appear').contains_text? "I lag" }.to raise_error TimeoutError
       end
     end
 
@@ -36,7 +36,7 @@ describe Prickle::Capybara do
     context "clicking elements" do
       it 'fails to click an element that has not appeared yet' do
         Prickle::Capybara.wait_time = 1
-        expect { prickly.click_by_name('lagged') }.to raise_error Capybara::TimeoutError
+        expect { prickly.click_by_name('lagged') }.to raise_error TimeoutError
       end
 
       it 'can click an element after it appears' do

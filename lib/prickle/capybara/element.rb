@@ -37,8 +37,8 @@ module Prickle
       end
 
       def find_element_by_xpath
-        wait_until(Capybara.wait_time) do
-          find(:xpath, xpath).visible?
+        Timeout.timeout(Capybara.wait_time) do
+          sleep(0.1) until find(:xpath, xpath).visible?
         end unless Capybara.wait_time.nil?
 
         find :xpath, xpath
