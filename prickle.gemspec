@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency "capybara"
 
   s.add_development_dependency "capybara"
-  s.add_development_dependency "rspec", "~> 2.8.0"
+  s.add_development_dependency "rspec", "~> 2.13.0"
   s.add_development_dependency "sinatra", "~> 1.3.2"
   s.add_development_dependency "rake"
   s.add_development_dependency "capybara-webkit"
