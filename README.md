@@ -24,6 +24,8 @@ World do
 end
 ```
 
+*For Capybara 2.0, make sure you are using prickle ≥ 0.1.0*
+
 ## Waiting for elements to become visible
 
 To enable this feature you need to set the *Prickle::Capybara.wait_time* property.
